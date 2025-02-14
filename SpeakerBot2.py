@@ -1,10 +1,13 @@
-import torch
+print("Loading libraries")
+from torch.nn.functional import softmax
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import spacy
+print("Loading models")
 
 emotion_model_name = "SamLowe/roberta-base-go_emotions"
 emotion_tokenizer = AutoTokenizer.from_pretrained(emotion_model_name)
 emotion_model = AutoModelForSequenceClassification.from_pretrained(emotion_model_name)
+print("Success loading!")
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -12,7 +15,7 @@ nlp = spacy.load("en_core_web_sm")
 def classify_emotion(text):
     inputs = emotion_tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
     outputs = emotion_model(**inputs)
-    probs = torch.nn.functional.softmax(outputs.logits, dim=-1)[0]
+    probs = softmax(outputs.logits, dim=-1)[0]
 
     id2label = emotion_model.config.id2label
     emotions = {id2label[i]: float(probs[i]) for i in range(len(probs))}
@@ -52,7 +55,7 @@ def analyze_user_input():
     print("\n" + "-" * 50 + "\n")
     while True:
         user_input = input("Enter the message in English (or '0' for exit): ")
-        if user_input() == '0':
+        if user_input == '0':
             print("Good Luck!")
             break
 

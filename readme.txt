@@ -1,5 +1,9 @@
 Состав архива:
 
+readme.txt
+SpeakerBot2.py
+requirements.txt
+
 _________________
 
 Описание:
@@ -17,5 +21,22 @@ SpaCy — библиотека, которая предоставляет инс
 
 _________________
 
-Инструкция:
-1
+Инструкция для PyCharm Сommunity:
+
+1)  Создание виртуального окружения, в терминал вставляем сообщение ниже, ждем пока появиться папка .venv:
+    python -m venv .venv
+
+2)  а) Активация виртуального окружения на Windows:
+    .venv\Scripts\activate
+
+    б) Активация виртуального окружения на Mac
+    source venv/bin/activate
+
+3)  File -> Settings -> Project -> Python Interpreter -> Add Interpreter -> Add Local Interpreter -> (выбираем) Existing -> Ok -> Apply -> Ok
+
+4)  Скачиваем библиотеки:
+    pip install -r requirements.txt
+
+5)  Ждем пока скачаются все библтотеки, затем запускаем.
+
+6)  Набирать текст после сообщение "Enter the message in English (or '0' for exit):", 0 для завершения
